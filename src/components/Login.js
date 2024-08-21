@@ -1,6 +1,6 @@
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import validation from "../utils/validation";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // this auth represents the most updated value of currentUser,
 import { auth } from "../utils/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -9,22 +9,36 @@ const Login = () => {
   const email = useRef(null);
   const password = useRef(null);
   const [error, setError] = useState("");
+  const [isPending, setIsPending] = useState(false);
+  const navigate = useNavigate();
 
   function handleSubmit() {
-    const result = validation(email.current.value, password.current.value);
+    const result = validation(
+      "Lorem",
+      email.current.value,
+      password.current.value
+    );
     setError(result.error);
 
     if (result.valid === false) return;
+
+    setIsPending(true);
 
     signInWithEmailAndPassword(
       auth,
       email.current.value,
       password.current.value
-    ).catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      setError(`${errorCode}: ${errorMessage}`);
-    });
+    )
+      .then(() => {
+        setIsPending(false);
+        navigate("/browse");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setIsPending(false);
+        setError(`${errorCode}: ${errorMessage}`);
+      });
   }
 
   return (
@@ -44,18 +58,23 @@ const Login = () => {
               type="text"
               className="w-full bg-transparent border border-slate-600 py-3 px-5 mb-5 rounded focus:outline-none"
               placeholder="Email"
+              required
             />
             <input
               ref={password}
               type="password"
               className="w-full bg-transparent border border-slate-600 py-3 px-5 mb-5 rounded focus:outline-none"
               placeholder="Password"
+              required
             />
             <button
-              className="bg-red-700 py-2 px-4 w-full rounded hover:bg-red-800 transition"
+              disabled={isPending}
+              className={`bg-red-700 py-2 px-4 w-full rounded hover:bg-red-800 transition ${
+                isPending ? "opacity-80 cursor-not-allowed" : ""
+              }`}
               onClick={handleSubmit}
             >
-              Sign in
+              {isPending ? "Signing in..." : "Sign in"}
             </button>
           </form>
           <p className="text-sm font-thin">

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useRouteError } from "react-router-dom";
 import openai from "../utils/openai";
 
 const SearchGPT = () => {

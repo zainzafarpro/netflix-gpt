@@ -73,7 +73,7 @@ function App() {
     },
   ]);
 
-  return <RouterProvider router={appRouter} />;
+  return <RouterProvider basename="/netflix-gpt" router={appRouter} />;
 }
 
 export default App;

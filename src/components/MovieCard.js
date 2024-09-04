@@ -15,7 +15,7 @@ const MovieCard = ({ id, poster, name, releaseDate, rating, overview }) => {
   const clipId = ytFilter?.length > 0 ? ytFilter[0]?.key : null;
 
   return (
-    <div className="w-1/6 flex-shrink-0 px-2 cursor-pointer">
+    <div className="w-2/6 md:w-1/6 flex-shrink-0 px-2 cursor-pointer">
       <Popup
         trigger={
           <div className="text-white">
@@ -53,7 +53,7 @@ const MovieCard = ({ id, poster, name, releaseDate, rating, overview }) => {
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerPolicy="strict-origin-when-cross-origin"
-            allowfullscreen
+            allowFullScreen
           ></iframe>
 
           <div className="text-sm p-5">

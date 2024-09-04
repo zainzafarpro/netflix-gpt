@@ -12,6 +12,7 @@ import {
   addPopular,
   addTopRated,
   addUpcoming,
+  updateHeroIndex,
 } from "../utils/moviesSlice";
 
 export const useMovies = () => {
@@ -27,18 +28,18 @@ export const useMovies = () => {
         fetch(MOVIES_TOPRATED, MOVIE_API_OPTIONS).then((res) => res.json()),
         fetch(MOVIES_UPCOMING, MOVIE_API_OPTIONS).then((res) => res.json()),
       ]);
-
       dispatch(addNowPlaying(nowPlaying));
       dispatch(addPopular(popular));
       dispatch(addTopRated(topRated));
       dispatch(addUpcoming(upcoming));
+      dispatch(
+        updateHeroIndex(Math.floor(Math.random() * nowPlaying.results.length))
+      );
     } catch (error) {
       console.error("Error fetching movies:", error);
     }
   };
   useEffect(() => {
-    if (!nowPlaying && !popular && !topRated && !upcoming) {
-      fetchNowplaying();
-    }
+    fetchNowplaying();
   }, []);
 };

@@ -39,7 +39,7 @@ const UpdateProfile = () => {
       <div className="min-h-dvh flex flex-col items-center justify-center">
         <form
           onSubmit={(e) => e.preventDefault()}
-          className="py-12 px-20 w-4/12 bg-black/80 text-white"
+          className="py-12 px-20 md:w-4/12 bg-black/80 text-white"
         >
           {error && (
             <div className="w-full bg-red-600 text-white rounded mb-2 py-1 px-4">

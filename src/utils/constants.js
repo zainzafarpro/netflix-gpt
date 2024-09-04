@@ -18,3 +18,5 @@ export const MOVIES_UPCOMING = "https://api.themoviedb.org/3/movie/upcoming";
 export const MOVIE_POSTER_CDN = "https://image.tmdb.org/t/p/w300/";
 
 export const YOUTUBE_CLIP_CDN = "https://www.youtube.com/embed/";
+
+export const MOVIE_API = "https://api.themoviedb.org/3/movie/";

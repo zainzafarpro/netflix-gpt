@@ -4,6 +4,7 @@ import {
   Outlet,
   Navigate,
 } from "react-router-dom";
+import SearchGPT from "./components/SearchGPT";
 import Browse from "./components/Browse";
 import Login from "./components/Login";
 import Header from "./components/Header";
@@ -49,6 +50,14 @@ function App() {
         {
           path: "/register",
           element: user ? <Navigate to="/browse" /> : <Register />,
+        },
+        {
+          path: "/search",
+          element: (
+            <ProtectedRoute isLoggedin={user}>
+              <SearchGPT />
+            </ProtectedRoute>
+          ),
         },
         {
           path: "/update-profile",

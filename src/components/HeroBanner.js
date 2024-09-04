@@ -19,7 +19,7 @@ const HeroBanner = ({ trailerId, title, description, votes, releaseDate }) => {
   if (!clipId) return null;
 
   return (
-    <div className="relative">
+    <div className="relative min-h-dvh">
       <iframe
         className="w-screen aspect-video"
         src={`${YOUTUBE_CLIP_CDN}${clipId}?autoplay=1&&mute=1&&controls=0&&showinfo=0`}
@@ -29,8 +29,8 @@ const HeroBanner = ({ trailerId, title, description, votes, releaseDate }) => {
         referrerPolicy="strict-origin-when-cross-origin"
         allowFullScreen
       ></iframe>
-      <div className="absolute text-white w-screen aspect-video top-0 left-0 bg-gradient-to-t from-black flex items-center">
-        <div className="w-[40%] pl-10 mt-[20%]">
+      <div className="md:absolute text-white w-screen aspect-video top-0 left-0 bg-gradient-to-t from-black flex items-center">
+        <div className="w-full mt-[10%] md:w-[40%] md:pl-10 md:pr-0 md:mt-[20%] px-10">
           <h1 className="text-5xl font-bold mb-8">{title}</h1>
           <p className="font-thin text-lg mb-4">{description}</p>
           <div className="flex">

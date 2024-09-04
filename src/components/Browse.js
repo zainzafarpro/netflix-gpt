@@ -6,21 +6,13 @@ import { useEffect, useState } from "react";
 
 const Browse = () => {
   useMovies();
-  const { nowPlaying, popular, topRated, upcoming } = useSelector(
+  const { nowPlaying, popular, topRated, upcoming, heroIndex } = useSelector(
     (store) => store.movies
   );
 
-  const [randomIndex, setRandomIndex] = useState(null);
+  if (!nowPlaying || !nowPlaying.results || heroIndex === null) return null;
 
-  useEffect(() => {
-    if (nowPlaying?.results?.length) {
-      setRandomIndex(Math.floor(Math.random() * nowPlaying.results.length));
-    }
-  }, [nowPlaying]);
-
-  if (!nowPlaying || !nowPlaying.results || randomIndex === null) return null;
-
-  const selectedMovie = nowPlaying.results[randomIndex];
+  const selectedMovie = nowPlaying.results[heroIndex];
   const trailerId = selectedMovie.id;
   const title = selectedMovie.original_title;
   const description = selectedMovie.overview;
@@ -36,18 +28,22 @@ const Browse = () => {
         votes={votes}
         releaseDate={releaseDate}
       />
-      <div className="-mt-10 relative mb-5">
-        <MoviesList name="Now Playing" list={nowPlaying?.results} />
+      <div className="mt-10 md:-mt-10 relative mb-5">
+        <MoviesList
+          id="now_playing"
+          name="Now Playing"
+          list={nowPlaying?.results}
+        />
       </div>
 
       <div className="mb-5">
-        <MoviesList name="Popular" list={popular?.results} />
+        <MoviesList name="Popular" id="popular" list={popular?.results} />
       </div>
       <div className="mb-5">
-        <MoviesList name="Top Rated" list={topRated?.results} />
+        <MoviesList name="Top Rated" id="top_rated" list={topRated?.results} />
       </div>
 
-      <MoviesList name="Upcoming" list={upcoming?.results} />
+      <MoviesList name="Upcoming" id="upcoming" list={upcoming?.results} />
     </div>
   );
 };

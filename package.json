@@ -1,5 +1,4 @@
 {
-  "homepage": "https://zainzafarpro.github.io/netflix-gpt",
   "name": "netflix-gpt",
   "version": "0.1.0",
   "private": true,
@@ -8,6 +7,7 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "dotenv": "^16.4.5",
     "firebase": "^10.12.2",
     "openai": "^4.56.1",
     "react": "^18.3.1",
@@ -23,7 +23,6 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "predeploy": "echo $OPENAI_API_KEY > .env",
     "deploy": "gh-pages -d build -b build",
     "build": "react-scripts build",
     "test": "react-scripts test",

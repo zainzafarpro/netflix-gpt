@@ -7,7 +7,9 @@ import { getAnalytics } from "firebase/analytics";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
+
+// Initialize Firebase
+const app = initializeApp({
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: "example-netflix.firebaseapp.com",
   projectId: "example-netflix",
@@ -15,10 +17,7 @@ const firebaseConfig = {
   messagingSenderId: "961674815172",
   appId: process.env.REACT_APP_FIREBASE_APP_ID,
   measurementId: process.env.REACT_APP_FIREBASE_M_ID,
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+});
 const analytics = getAnalytics(app);
 
 // Initialize Firebase Authentication and get a reference to the service

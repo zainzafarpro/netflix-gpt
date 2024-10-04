@@ -1,5 +1,7 @@
 # Netflix clone with Reactjs and Redux 🚀
 
+Live link: https://example-netflix.web.app/
+
 Comprehensive details of project
 
 - ReactJS
